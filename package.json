@@ -7,7 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "deploy": "astro build && wrangler deploy"
+    "deploy": "astro build && wrangler deploy",
+    "deploy:container": "astro build && node scripts/deploy-from-container.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.3.0",

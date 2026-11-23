@@ -1,5 +1,9 @@
 {
   "name": "farm-cast-site",
   "compatibility_date": "2026-11-01",
-  "assets": { "directory": "./dist" }
+  "assets": { "directory": "./dist" },
+  "routes": [
+    { "pattern": "farm-cast.com", "custom_domain": true },
+    { "pattern": "www.farm-cast.com", "custom_domain": true }
+  ]
 }

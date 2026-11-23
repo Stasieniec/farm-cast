@@ -1,16 +1,13 @@
 // Every piece of copy and contact detail on the site lives here.
-// Values in [BRACKETS] are still to be filled in.
 
 export const site = {
   title: 'farm-cast: machine learning and computer vision for food production',
   description:
     'Yield, quality and timing per field, growing room or batch. Machine learning and computer vision for food processors and large growers.',
   email: 'hello@farm-cast.com',
-  locations: 'Amsterdam · [CITY], Poland',
-  replyTime: '[RESPONSE TIME]',
-  legal: '[LEGAL ENTITY, REG. NO., ADDRESS]',
+  locations: 'Amsterdam · Warsaw',
   credits:
-    'Imagery: Copernicus Sentinel-2 · Ortofotomapa © GUGiK · Fields: ARiMR · Map © OpenStreetMap contributors, OpenMapTiles, OpenFreeMap · Mushroom footage: [SOURCE]',
+    'Imagery: Copernicus Sentinel-2 · Ortofotomapa © GUGiK · Fields: ARiMR · Map © OpenStreetMap contributors, OpenMapTiles, OpenFreeMap · Mushroom images: M18K dataset (Apache-2.0), detections by our model',
 };
 
 export const hero = {
@@ -45,13 +42,13 @@ export const method = {
 export const team = {
   heading: 'Two founders, both on every project',
   people: [
-    { name: 'Filip Pieniak', role: 'CEO · [one-line background]', photo: 'filip', linkedin: '#' },
-    { name: 'Stanisław Wasilewski', role: 'CTO · ML researcher, MSc AI, University of Amsterdam', photo: 'stas', linkedin: '#' },
+    { name: 'Filip Pieniak', role: 'CEO · SGH Warsaw. Go-to-market and growth for B2B and e-commerce companies', photo: 'filip', linkedin: 'https://www.linkedin.com/in/filip-pieniak' },
+    { name: 'Stanisław Wasilewski', role: 'CTO · AI researcher at Bynder, previously AI engineer at TasteRay. MSc AI, University of Amsterdam', photo: 'stas', linkedin: 'https://www.linkedin.com/in/stanislaw-wasilewski' },
   ],
 };
 
 export const contact = {
   heading: 'What do you still guess?',
-  body: `Tell us the crop, the scale and what you measure. We reply within ${site.replyTime}.`,
+  body: 'Tell us the crop, the scale and what you measure.',
   cta: 'Email us',
 };
