@@ -1,0 +1,15 @@
+---
+import Mark from './Mark.astro';
+interface Props { onDark?: boolean; size?: number; withMark?: boolean }
+const { onDark = false, size = 22, withMark = true } = Astro.props;
+---
+<span class="wordmark" style={`font-size:${size}px`}>
+  {withMark && <Mark onDark={onDark} />}
+  <span>farm<span class:list={['hyphen', { dark: onDark }]}>-</span>cast</span>
+</span>
+
+<style>
+  .wordmark { display: inline-flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+  .hyphen { color: var(--forecast); }
+  .hyphen.dark { color: var(--forecast-on-ink); }
+</style>

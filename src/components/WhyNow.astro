@@ -1,0 +1,39 @@
+---
+import { whyNow } from '../content';
+
+const cs = ['#C6D4A8', '#6C9A45', '#3F6E2A', '#9DBB72', '#22451A', '#E4E8D9'];
+const tiles: { x: number; y: number; c: string }[] = [];
+for (let r = 0; r < 3; r++) for (let c = 0; c < 6; c++) tiles.push({ x: c * 12, y: r * 13 + 1, c: r === 1 && c === 4 ? '#B87A0D' : cs[(c * 7 + r * 3) % 6] });
+---
+<section class="section why">
+  <div class="wrap stack">
+    <h2 class="h2">Why it works now</h2>
+    <div class="grid">
+      <div class="cell">
+        <svg aria-hidden="true" width="72" height="40" viewBox="0 0 72 40">{tiles.map((t) => <rect x={t.x} y={t.y} width="10" height="10" fill={t.c} />)}</svg>
+        <h3>{whyNow[0].title}</h3>
+        <p>{whyNow[0].body}</p>
+      </div>
+      <div class="cell">
+        <svg aria-hidden="true" width="72" height="40" viewBox="0 0 72 40"><circle cx="10" cy="22" r="9" fill="none" stroke="#3F6E2A" stroke-width="2" /><circle cx="30" cy="14" r="11" fill="none" stroke="#3F6E2A" stroke-width="2" /><circle cx="50" cy="25" r="8" fill="none" stroke="#6C9A45" stroke-width="2" /><circle cx="64" cy="12" r="6" fill="none" stroke="#B87A0D" stroke-width="2" /></svg>
+        <h3>{whyNow[1].title}</h3>
+        <p>{whyNow[1].body}</p>
+      </div>
+      <div class="cell">
+        <svg aria-hidden="true" width="72" height="40" viewBox="0 0 72 40"><path d="M0 4 L72 18 L72 22 L0 36 Z" fill="#9DBB72" fill-opacity="0.6" /><path d="M0 20 L72 20" stroke="#3F6E2A" stroke-width="2" /><circle cx="68" cy="20" r="4" fill="#B87A0D" /></svg>
+        <h3>{whyNow[2].title}</h3>
+        <p>{whyNow[2].body}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why { background: var(--paper); border-block: 1px solid var(--line); padding-block: 104px; }
+  .stack { display: flex; flex-direction: column; gap: 48px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 3px; }
+  .cell { display: flex; flex-direction: column; gap: 14px; padding: 32px; background: var(--ground); }
+  h3 { font-weight: 700; font-size: 24px; }
+  p { color: var(--text-2); }
+  @media (max-width: 640px) { .why { padding-block: 72px; } .cell { padding: 24px; } }
+</style>

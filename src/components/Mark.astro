@@ -1,0 +1,16 @@
+---
+// The farm-cast mark: nine field plots coloured by yield, the last one is the forecast.
+interface Props { size?: number; gap?: number; onDark?: boolean }
+const { size = 8, gap = 2, onDark = false } = Astro.props;
+const light = ['#C6D4A8', '#6C9A45', '#3F6E2A', '#9DBB72', '#3F6E2A', '#22451A', '#6C9A45', '#22451A', '#B87A0D'];
+const dark = ['#C6D4A8', '#6C9A45', '#3F6E2A', '#9DBB72', '#3F6E2A', '#6C9A45', '#6C9A45', '#9DBB72', '#D99A1E'];
+const colors = onDark ? dark : light;
+---
+<span class="mark" aria-hidden="true" style={`--s:${size}px;--g:${gap}px`}>
+  {colors.map((c) => <span style={`background:${c}`}></span>)}
+</span>
+
+<style>
+  .mark { display: inline-grid; grid-template-columns: repeat(3, var(--s)); gap: var(--g); flex: none; }
+  .mark span { width: var(--s); height: var(--s); }
+</style>

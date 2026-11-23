@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import Wordmark from './Wordmark.astro';
+import { hero, site } from '../content';
+import aerial from '../assets/work/aerial-fields.jpg';
+import detector from '../assets/work/mushroom-detector.jpg';
+import region from '../assets/work/region-fields.jpg';
+
+const tiles = [
+  { img: aerial, alt: 'Aerial view of farmland, potato fields outlined and coloured by satellite canopy greenness', label: 'fields · sentinel-2 · season 2026', caption: 'canopy greenness per field', pos: '40% 50%', big: true },
+  { img: detector, alt: 'Mushroom bed with every cap outlined and sized by the detector', label: 'growing bed · detector', caption: 'every cap found and sized', pos: '35% 50%' },
+  { img: region, alt: 'Map of a region with every potato field marked', label: 'region · every potato field', caption: 'two seasons, replayable', pos: '30% 45%' },
+];
+---
+<div class="dark">
+  <header class="nav">
+    <a href="#top" class="home" aria-label="farm-cast home"><Wordmark onDark /></a>
+    <nav aria-label="Main">
+      <span class="links">
+        <a href="#work">Work</a>
+        <a href="#method">Method</a>
+        <a href="#team">Team</a>
+      </span>
+      <a class="btn btn--light nav-cta" href={`mailto:${site.email}`}>{hero.cta}</a>
+    </nav>
+  </header>
+
+  <section id="top" class="hero">
+    <div class="text">
+      <h1>{hero.headline}</h1>
+      <p>{hero.lede}</p>
+      <a class="btn btn--light" href={`mailto:${site.email}`}>{hero.cta}</a>
+    </div>
+    <div class="mosaic">
+      {tiles.map((t, i) => (
+        <figure class:list={['tile', { big: t.big }]}>
+          <Image src={t.img} alt={t.alt} widths={[480, 800, 1200, 1600]} sizes={t.big ? '(max-width: 900px) 100vw, 40vw' : '(max-width: 900px) 50vw, 25vw'} loading={i === 0 ? 'eager' : 'lazy'} style={`object-position:${t.pos}`} />
+          <span class="label mono">{t.label}</span>
+          <figcaption class="mono">{t.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+</div>
+
+<style>
+  .dark { background: var(--ink); color: var(--ground); }
+  .nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 48px; border-bottom: 1px solid var(--ink-2); }
+  .home { text-decoration: none; color: var(--ground); }
+  nav { display: flex; align-items: center; gap: 28px; font-size: 15px; }
+  .links { display: flex; gap: 28px; }
+  .links a { color: var(--soft-on-ink); text-decoration: none; }
+  .links a:hover { color: #fff; }
+  .nav-cta { min-height: 44px; padding: 0 18px; }
+
+  .hero { display: grid; grid-template-columns: minmax(380px, 5fr) 7fr; min-height: min(720px, calc(100vh - 81px)); }
+  .text { display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 28px; padding: 56px 48px; }
+  h1 { font-weight: 800; font-size: clamp(40px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.035em; }
+  .text p { font-size: 19px; line-height: 1.5; color: var(--soft-on-ink); max-width: 30em; }
+
+  .mosaic { display: grid; grid-template-columns: 1.25fr 1fr; grid-template-rows: 1fr 1fr; gap: 3px; min-height: 560px; }
+  .tile { position: relative; overflow: hidden; margin: 0; min-height: 0; }
+  .tile.big { grid-row: span 2; }
+  .tile :global(img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .label, figcaption { position: absolute; left: 16px; padding: 5px 9px; background: var(--ink); }
+  .label { top: 16px; font-size: 13px; color: var(--ground); }
+  figcaption { bottom: 16px; font-size: 12px; color: var(--muted-on-ink); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: 0; }
+    .mosaic { min-height: 0; grid-template-columns: 1fr 1fr; grid-template-rows: 260px 180px; }
+    .tile.big { grid-row: auto; grid-column: span 2; }
+    .links { display: none; }
+  }
+  @media (max-width: 640px) {
+    .nav { padding: 14px 20px; }
+    .text { padding: 40px 20px; }
+    .text p { font-size: 17px; }
+    .mosaic { grid-template-rows: 220px 150px; }
+    .label { font-size: 11px; top: 10px; left: 10px; }
+    figcaption { display: none; }
+  }
+</style>

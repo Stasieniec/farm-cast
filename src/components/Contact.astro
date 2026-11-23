@@ -1,0 +1,47 @@
+---
+import Wordmark from './Wordmark.astro';
+import { contact, site } from '../content';
+---
+<section id="contact" class="contact">
+  <div class="wrap grid">
+    <div class="left">
+      <h2>{contact.heading}</h2>
+      <p>{contact.body}</p>
+    </div>
+    <div class="right">
+      <a class="btn btn--light big-btn" href={`mailto:${site.email}`}>{contact.cta}</a>
+      <div class="mono details">
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <span>{site.locations}</span>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap foot">
+    <div class="row">
+      <Wordmark onDark withMark={false} size={17} />
+      <span class="mono">{site.legal} · © {new Date().getFullYear()}</span>
+    </div>
+    <p class="mono credits">{site.credits}</p>
+  </div>
+</footer>
+
+<style>
+  .contact { background: var(--ink); color: var(--ground); padding-block: 120px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr)); gap: 40px 64px; align-items: end; }
+  .left { display: flex; flex-direction: column; gap: 24px; }
+  h2 { font-weight: 800; font-size: clamp(44px, 6vw, 84px); line-height: 0.98; letter-spacing: -0.035em; }
+  .left p { font-size: 20px; color: var(--soft-on-ink); }
+  .right { display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+  .big-btn { min-height: 56px; padding: 0 28px; font-size: 18px; font-weight: 600; }
+  .details { display: flex; flex-direction: column; gap: 4px; font-size: 16px; color: var(--soft-on-ink); }
+  .details a { color: var(--ground); }
+
+  footer { background: var(--ink); color: var(--muted-on-ink); border-top: 1px solid var(--ink-2); }
+  .foot { display: flex; flex-direction: column; gap: 14px; padding-block: 28px; }
+  .row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; color: var(--ground); }
+  .row .mono { font-size: 13px; color: var(--muted-on-ink); }
+  .credits { font-size: 12px; line-height: 1.6; }
+  @media (max-width: 640px) { .contact { padding-block: 80px; } }
+</style>
